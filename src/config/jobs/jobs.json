@@ -1,0 +1,15 @@
+[
+  {
+    "description": "Every 5 seconds fetch ADA price",
+    "rule": "*/5 * * * * *",
+    "jobOptions": {
+      "task": {
+        "url": "https://coinmarketcap.com/currencies/cardano/",
+        "action": "GET_TEXT",
+        "selector": "price",
+        "variable": "ada",
+        "template": "ticker"
+      }
+    }
+  }
+]
