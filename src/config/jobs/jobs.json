@@ -1,14 +1,27 @@
 [
   {
-    "description": "Every 5 seconds fetch ADA price",
-    "rule": "*/5 * * * * *",
-    "jobOptions": {
+    "type": "WebScraper",
+    "description": "Every 5 minutes fetch ADA price",
+    "rule": "*/5 * * * *",
+    "options": {
       "task": {
         "url": "https://coinmarketcap.com/currencies/cardano/",
-        "action": "GET_TEXT",
-        "selector": "price",
-        "variable": "ada",
-        "template": "ticker"
+        "template": "{{ timestamp }}: ADA: {{ price }}",
+        "storage": {
+          "enabled": true,
+          "type": "json",
+          "filename": "ada-price.json"
+        },
+        "sender": {
+          "enabled": false
+        },
+        "actions": [
+          {
+            "type": "GET_TEXT",
+            "selector": ".priceValue",
+            "variable": "price"
+          }
+        ]
       }
     }
   }
