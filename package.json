@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --ignore data/ src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier:write": "prettier --write \"{,!(node_modules|dist|build|coverage)/**/}*.{js,json,vue}\"",
+    "prettier:write": "prettier --write \"{,!(node_modules|dist|build|coverage)/**/}*.{js,json,vue}\""
   },
   "author": "",
   "license": "ISC",
