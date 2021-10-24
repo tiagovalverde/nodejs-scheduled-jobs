@@ -2,11 +2,15 @@ import { Browser, } from 'puppeteer';
 import nunjucks from 'nunjucks';
 import moment from 'moment';
 
-import { Job, JobParams } from "./jobs";
+// Classes
+import { Job } from "./job.class";
+import { JobParams } from './job.interfaces';
 
 // Services
 import puppeteerService from '../../services/puppeteer';
 import { Page } from 'puppeteer';
+
+// Storage
 import { JsonFile } from '../../storage/json-file';
 
 export class WebScraperJob extends Job {
@@ -17,14 +21,6 @@ export class WebScraperJob extends Job {
     super(data);
   }
 
-  // TODO: move to Job class
-  async execute() {
-    await this.beforeExecution();
-    await this.execution();
-    await this.afterExecution();
-  }
-
-  // TODO: move to Job class (force child implemenation)
   async beforeExecution() {
     this.browser = await puppeteerService.startBrowser();
     this.page = await this.browser.newPage();
@@ -38,7 +34,6 @@ export class WebScraperJob extends Job {
     }
   }
 
-  // TODO: move to Job class (force child implemenation)
   async afterExecution() {
     this.setState('timestamp', moment().format());
 

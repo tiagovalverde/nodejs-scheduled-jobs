@@ -2,7 +2,7 @@
   {
     "type": "WebScraper",
     "description": "Every 5 minutes fetch ADA price",
-    "rule": "*/5 * * * *",
+    "rule": "*/5 * * * * *",
     "options": {
       "task": {
         "url": "https://coinmarketcap.com/currencies/cardano/",

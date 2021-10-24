@@ -1,8 +1,9 @@
 const fs = require('fs');
 const path = require("path");
 
-import { Job, JobParams } from "./jobs";
-import { WebScraperJob } from "./web-scraper-job";
+import { Job } from "./job.class";
+import { WebScraperJob } from "./web-scraper-job.class";
+import { JobParams } from "./job.interfaces";
 
 /**
  * Loads set of job instances from a json file configuration
