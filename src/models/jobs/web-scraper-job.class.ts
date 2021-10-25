@@ -5,6 +5,7 @@ import moment from 'moment';
 // Classes
 import { Job } from "./job.class";
 import { JobParams } from './job.interfaces';
+import { sendersFactory } from '../senders/senders-factory';
 
 // Services
 import puppeteerService from '../../services/puppeteer';
@@ -36,9 +37,8 @@ export class WebScraperJob extends Job {
 
   async afterExecution() {
     this.setState('timestamp', moment().format());
-
-    const content = this.result();
     this.store();
+    this.send();
     await this.browser.close();
   }
 
@@ -54,9 +54,11 @@ export class WebScraperJob extends Job {
    * Sends result to another service (email, api, chat, ...)
    */
   send() {
-    if (this.options.task.sender.enabled) {
-      const content = this.result();
-      console.log(content);
+    const { enabled, type, params } = this.options.task.sender;
+    if (enabled) {
+      const message = this.result();
+      const sender = new (sendersFactory(type))(params);
+      sender.sendMessage(message);
     }
   }
 

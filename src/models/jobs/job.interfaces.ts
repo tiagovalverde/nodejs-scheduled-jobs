@@ -11,8 +11,14 @@ export interface Storage {
   channelName?: string;
 }
 
+export interface SenderParams {
+  channel_name?: string;
+}
+
 export interface Sender {
   enabled: boolean;
+  type: string;
+  params: SenderParams;
 }
 
 export interface JobTask {

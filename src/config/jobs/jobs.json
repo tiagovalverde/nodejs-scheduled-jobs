@@ -13,7 +13,11 @@
           "filename": "ada-price.json"
         },
         "sender": {
-          "enabled": false
+          "enabled": true,
+          "type": "DiscordSender",
+          "params": {
+            "channel_name": "test_bot_channel"
+          }
         },
         "actions": [
           {

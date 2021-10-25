@@ -1,6 +1,8 @@
 import express, { Application, Request, Response } from 'express';
 import { scheduleJob, Job as NodeScheduleJob } from 'node-schedule';
 
+require('dotenv').config()
+
 // Models
 import { loadJobs, Job } from './models/jobs';
 
@@ -23,3 +25,5 @@ jobs.forEach((j: Job) => {
 
   scheduledJobs.push(scheduledJob);
 });
+
+app.listen(3000);
